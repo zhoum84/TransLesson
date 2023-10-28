@@ -1,12 +1,65 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Voice, {
+  SpeechRecognizedEvent,
+  SpeechResultsEvent,
+  SpeechErrorEvent,
+} from "@react-native-community/voice";
 
 //find out how to animate the red circle
 export default RecordScreen = ({ navigation }) => {
   const [isRecording, setIsRecording] = useState(false);
+  const [transcript, setTranscript] = useState("");
+//   useEffect(() => {
+//     // Voice.onSpeechStart = onSpeechStartHandler;
+//     // Voice.onSpeechEnd = onSpeechEndHandler;
+//     Voice.onSpeechResults = onSpeechResultsHandler;
+//     // return () => {
+//     //   Voice.destroy().then(Voice.removeAllListeners);
+//     // };
+//   }, []);
+
+
+  const startSpeechToText = async () => {
+    if (Voice) {
+      try {
+        await Voice.start("en-US");
+        //onSpeechStartHandler();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  
+
+  const stopSpeechToText = async () => {
+    if (Voice) {
+      try {
+        await Voice.stop();
+        //Voice.onSpeechResults(SpeechResultsEvent);
+        console.log("Recording Complete");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  
+  const onSpeechResultsHandler = (event) => {
+    setTranscript(event?.value?.[0] || '');
+    console.log("lmao")
+    console.log(transcript);
+};
+
 
   const handlePress = () => {
+    if (!isRecording) {
+      startSpeechToText();
+    } else {
+      stopSpeechToText();
+    }
     setIsRecording((isRecording) => !isRecording);
   };
 
@@ -28,12 +81,16 @@ export default RecordScreen = ({ navigation }) => {
         )}
       </TouchableOpacity>
 
-      {isRecording ?  
-      <TouchableOpacity>
-        <Text style={styles.pause}>
-            Pause             
+      {isRecording ? (
+        <TouchableOpacity>
+          <Text style={styles.pause}>
+            Pause
             <Ionicons name="pause-circle-outline" size={25} color="black" />
-        </Text></TouchableOpacity> : <Text></Text> }
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <Text></Text>
+      )}
     </View>
   );
 };
@@ -58,11 +115,10 @@ const styles = StyleSheet.create({
     //marginLeft: '18%',
     padding: "2%",
     fontSize: 33,
-    marginBottom: '5%',
+    marginBottom: "5%",
     //marginTop: '70%'
   },
   pause: {
-    
-    fontSize: 25
-  }
+    fontSize: 25,
+  },
 });
