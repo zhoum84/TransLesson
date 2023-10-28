@@ -14,6 +14,11 @@ export default Home = ({navigation}) => {
                 View Notes
             </Text>
         </TouchableOpacity>
+        <TouchableOpacity>
+            <Text style={styles.signup} onPress={() => navigation.navigate('Test')}>
+                Test
+            </Text>
+        </TouchableOpacity>
 
         <TouchableOpacity>
             <Text style={styles.signup}>

@@ -22,10 +22,10 @@ public class TranscriptController {
         return service.getTextsByNameAndLanguage(name, language);
     }
 
-    @GetMapping(value = "/transcripts", params = {"date", "language"})
-    public List<String> getByDateAndLanguage(@RequestParam LocalDate date, @RequestParam String language) {
-        return service.getTextsByDateAndLanguage(date, language);
-    }
+    //@GetMapping(value = "/transcripts", params = {"date", "language"})
+    //public List<String> getByDateAndLanguage(@RequestParam LocalDate date, @RequestParam String language) {
+    //    return service.getTextsByDateAndLanguage(date, language);
+    //}
 
     @PostMapping("/transcripts")
     public String addTranscript(@RequestBody Transcript t) {
