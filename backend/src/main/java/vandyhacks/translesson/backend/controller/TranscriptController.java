@@ -2,17 +2,14 @@ package vandyhacks.translesson.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import vandyhacks.translesson.backend.model.Transcript;
 import vandyhacks.translesson.backend.service.TranscriptService;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
+@RestController
 public class TranscriptController {
     private final TranscriptService service;
 
