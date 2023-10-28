@@ -1,0 +1,43 @@
+package vandyhacks.translesson.backend.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import vandyhacks.translesson.backend.model.Transcript;
+import vandyhacks.translesson.backend.repository.TranscriptRepository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+public class TranscriptService {
+    private final TranscriptRepository repository;
+
+    @Autowired
+    public TranscriptService(TranscriptRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<String> getTextsByNameAndLanguage(String name, String language) {
+        return translate(getTextsByName(name), language);
+    }
+
+    public List<String> getTextsByName(String name) {
+        return repository.findByName(name).stream().map(Transcript::getText).toList();
+    }
+
+    public List<String> getTextsByDateAndLanguage(LocalDate date, String language) {
+        return translate(getTextsByDate(date), language);
+    }
+
+    public List<String> getTextsByDate(LocalDate date) {
+        return repository.findByDate(date).stream().map(Transcript::getText).toList();
+    }
+
+    public List<String> translate(List<String> texts, String language) {
+        return texts;
+    }
+
+    public String addTranscript(Transcript t) {
+        return repository.save(t).get_id();
+    }
+}
