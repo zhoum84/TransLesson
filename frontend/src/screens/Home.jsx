@@ -1,12 +1,17 @@
 import { View,Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 
-export default Home = () => {
+export default Home = ({navigation}) => {
   return (
     <View style={styles.container}>
-        <Text>Vandy Hacks Home Screen</Text>
-        <TouchableOpacity>
+        <Text style={styles.title}>Audio App</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Record')}>
             <Text style={styles.signup}>
                 Record
+            </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+            <Text style={styles.signup} onPress={() => navigation.navigate('Notes')}>
+                View Notes
             </Text>
         </TouchableOpacity>
 
@@ -23,14 +28,14 @@ export default Home = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'whitesmoke',
+      backgroundColor: 'steelblue',
       alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%'
+      
     },
     title:{
-        
+        fontSize: 50,
+        marginBottom: '40%',
+        marginTop:"30%"
     },
     signup: {
         backgroundColor: 'white',
