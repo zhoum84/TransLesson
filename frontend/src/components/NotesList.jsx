@@ -1,19 +1,23 @@
 import { Text, StyleSheet, View } from "react-native";
 import { useState, useEffect } from "react";
 import { FlatList, TouchableOpacity } from "react-native";
+import {useNavigation } from "@react-navigation/native"
 import NoteDetails from "./NoteDetails";
 import searchNote from "../hooks/searchNote";
 
-export default NotesList = ({ name, transcript }) => {
+export default NotesList = ({  }) => {
   const [noteList, setNoteList] = useState({});
   const [searchAPI, results, errorMessage] = searchNote();
 
-
+  const navigation = useNavigation();
+  const data = Object.keys(noteList).map(key => ({
+    key,
+    ...noteList[key]
+}));
 
   useEffect(()=>{
-
+    
     setNoteList(results);
-    console.log(noteList)
   },[searchAPI])
   return (
     <View style={styles.container}>
@@ -21,14 +25,13 @@ export default NotesList = ({ name, transcript }) => {
         
         {noteList.empty ? <Text>Loading</Text> : <FlatList
         vertical
-        data={(Object.values((noteList)))}
-        keyExtractor={(noteList) => noteList.name }
+        data={data}
+        keyExtractor={(data) => data.key }
         renderItem={({item}) => {
-            console.log(item)
             return (
-                <NoteDetails result={item}/>
-                // <TouchableOpacity onPress={() => navigation.navigate('ResultsShow', {id: item.id})} >
-                // </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SingleNote', {index: item.key})} >
+                    <NoteDetails result={item} navigation={navigation}/>
+                </TouchableOpacity>
                 ) 
         }}
 
@@ -39,9 +42,14 @@ export default NotesList = ({ name, transcript }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 15,
+    alignSelf: "center",
     width: "90%",
+    height: "90%",
     borderWidth: 1,
+    justifyContent: "center",
+    flexDirection: 'column',
+    alignItems: 'center',
+    
   },
   name: {
     fontWeight: "bold",
@@ -52,4 +60,7 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: "5%",
   },
+  button:{
+    marginTop: "1%"
+  }
 });

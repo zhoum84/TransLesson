@@ -1,5 +1,4 @@
 import { View,Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import dog from '../../assets/Dog_waving.png'
 export default TransitionScreen = ({route, navigation}) => {
     
   return (

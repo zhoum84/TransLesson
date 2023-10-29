@@ -8,9 +8,13 @@ import NotesScreen from './src/screens/NotesScreen.jsx';
 import TestScreen from './src/screens/TestScreen.jsx'
 import ResultsScreen from './src/screens/ResultsScreen.jsx';
 import TransitionScreen from './src/screens/TransitionScreen.jsx';
+import LoadScreen from './src/screens/LoadScreen.jsx';
+import SingleNoteScreen from './src/screens/SingleNoteScreen.jsx';
+
+import { LogBox } from 'react-native';
 
 const Stack = createNativeStackNavigator();
-
+LogBox.ignoreAllLogs(); 
 export default function App() {
   return (
     <NavigationContainer>
@@ -25,6 +29,9 @@ export default function App() {
         <Stack.Screen name="Test" component={TestScreen}/>
         <Stack.Screen name="Results" component={ResultsScreen}/>
         <Stack.Screen name="Transition" component={TransitionScreen}/>
+        <Stack.Screen name="Load" component={LoadScreen} />
+        <Stack.Screen name="SingleNote" component={SingleNoteScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>  
     );

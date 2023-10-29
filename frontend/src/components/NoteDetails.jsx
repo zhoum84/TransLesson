@@ -1,24 +1,33 @@
 import {Text, StyleSheet, View} from 'react-native';
 
-export default Note = ({item}) =>{
-    return (
-        <View style={styles.container}>
-            <Text style={styles.name}>{item}</Text>
-            <Text style={styles.text}>{item}</Text>
-        </View>
-    )
+export default Note = ({result}) =>{
+    
+    if (result){    
+        const {date, key, name, text} = result;
+        return (
+            <View style={styles.container}>
+                <Text style={styles.name}>{name} {date}</Text>
+                <Text style={styles.text}>{text}</Text>
+            </View>
+        )
+    }
+    else return null;
 }
 
 const styles = StyleSheet.create({
     container:{
-        marginLeft: 15,
-        height: '30%',
-        width: '90%',
-        borderWidth: 1
+        borderRadius: 5,
+        maxWidth: 3000,
+        height: '50%',
+        alignSelf:"stretch",
+        width: '100%',
+        borderWidth: 1,
+        flex: 1,
+        flexWrap: "wrap",
     },
     name:{
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 20,
         marginBottom: '1%',
         marginLeft: '5%'
     },

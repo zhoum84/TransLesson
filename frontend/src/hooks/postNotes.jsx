@@ -9,7 +9,7 @@ export default () => {
     const json = JSON.stringify({
       name: name,
       date: date,
-      text: transcript,
+      text: transcript
     });
 
     try {
@@ -19,9 +19,8 @@ export default () => {
           'Content-Type': 'application/json'
         }
       });
-      console.log("test") 
       setResults(response.data);
-      
+
     } catch (err) {
       console.log(err);
       setErrorMessage("Something went wrong");
