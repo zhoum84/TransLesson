@@ -1,5 +1,10 @@
 package vandyhacks.translesson.backend.service;
 
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.translate.Translate;
+import com.google.api.services.translate.model.TranslationsResource;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vandyhacks.translesson.backend.model.Transcript;
@@ -33,8 +38,20 @@ public class TranscriptService {
         return repository.findByDate(date).stream().map(Transcript::getText).toList();
     }
 
+    @SneakyThrows
     public List<String> translate(List<String> texts, String language) {
-        return texts;
+        Translate t = new Translate.Builder(GoogleNetHttpTransport.newTrustedTransport(),
+                GsonFactory.getDefaultInstance(), null)
+                .setApplicationName("TransLesson")
+                .build();
+        Translate.Translations.List list = t.new Translations().list(texts, language);
+        list.setKey("AIzaSyBSY85cWOiIhVSwEZ13oLoo2k1tB24wBw4");
+        return list
+                .execute()
+                .getTranslations()
+                .stream()
+                .map(TranslationsResource::getTranslatedText)
+                .toList();
     }
 
     public String addTranscript(Transcript t) {
