@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class TranscriptController {
     private final TranscriptService service;
 
@@ -31,9 +32,9 @@ public class TranscriptController {
     }
 
     @PostMapping("/transcripts")
-    public ResponseEntity<String> addTranscript(@RequestBody Transcript t) {
+    public String addTranscript(@RequestBody Transcript t) {
         System.out.println(t.getText());
-        return getCorsResponse(service.addTranscript(t));
+        return service.addTranscript(t);
     }
 
     private <T> ResponseEntity<T> getCorsResponse(T t) {
