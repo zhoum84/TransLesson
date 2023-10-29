@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.List;
 
-@RestController
 @CrossOrigin(origins = "*")
+@RestController
 public class TranscriptController {
     private final TranscriptService service;
 
