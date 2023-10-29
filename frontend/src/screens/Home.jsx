@@ -1,9 +1,9 @@
-import { View,Text, StyleSheet, Button, TouchableOpacity } from "react-native";
-
+import { View,Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import dogpic from '../../assets/cute_doggy.png'
 export default Home = ({navigation}) => {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Audio App</Text>
+        <Image style={styles.image} source={require('../../assets/Lucky_Bengy.png')}/>
         <TouchableOpacity onPress={() => navigation.navigate('Record')}>
             <Text style={styles.signup}>
                 Record
@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 50,
-        marginBottom: '40%',
-        marginTop:"30%"
     },
     signup: {
         backgroundColor: 'white',
@@ -54,7 +52,13 @@ const styles = StyleSheet.create({
         fontSize:  33,
         marginBottom: 5
         //marginTop: '70%'
-      }
-  });
+      },
+    image: {
+        height: 400,
+        width: 400,
+        marginBottom: 0,
+    }
+
+});
   
   

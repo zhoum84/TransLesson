@@ -13,7 +13,7 @@ export default () => {
     });
 
     try {
-      const response = await axios.post("https://10.0.2.2:8080/transcripts", json, {
+      const response = await backend.post("/post", json, {
         headers: {
           // Overwrite Axios's automatically set Content-Type
           'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export default () => {
       });
       console.log("test") 
       setResults(response.data);
-      console.log(response.config)
+      
     } catch (err) {
       console.log(err);
       setErrorMessage("Something went wrong");

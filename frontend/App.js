@@ -7,6 +7,7 @@ import RecordScreen from './src/screens/RecordScreen.jsx';
 import NotesScreen from './src/screens/NotesScreen.jsx';
 import TestScreen from './src/screens/TestScreen.jsx'
 import ResultsScreen from './src/screens/ResultsScreen.jsx';
+import TransitionScreen from './src/screens/TransitionScreen.jsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Record" component={RecordScreen}/>
         <Stack.Screen name="Test" component={TestScreen}/>
         <Stack.Screen name="Results" component={ResultsScreen}/>
+        <Stack.Screen name="Transition" component={TransitionScreen}/>
       </Stack.Navigator>
     </NavigationContainer>  
     );

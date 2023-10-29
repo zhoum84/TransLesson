@@ -6,6 +6,10 @@ export default ResultsScreen = ({route, navigation}) => {
         var {name, transcript, language, date } = route.params;
     const [postAPI, results, errorMessage] = postNotes();
 
+    const handlePress = () =>{
+      postAPI(name, date, transcript)
+      navigation.navigate('Transition')
+    }
     
   return (
     <View style={styles.container}>
@@ -15,7 +19,7 @@ export default ResultsScreen = ({route, navigation}) => {
         <Text style={styles.fields}><Text style={{fontWeight: 'bold'}}>Text</Text>: "{transcript}"</Text>
 
     <TouchableOpacity>
-        <Text style={styles.submit} onPress={() => postAPI(name, date, transcript)}>
+        <Text style={styles.submit} onPress={() => handlePress()}>
             Upload Notes
         </Text>
     </TouchableOpacity>
