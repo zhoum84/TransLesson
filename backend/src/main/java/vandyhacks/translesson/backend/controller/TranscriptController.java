@@ -48,4 +48,9 @@ public class TranscriptController {
 
         return new ResponseEntity<>(t, headers, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/transcripts", method = RequestMethod.OPTIONS)
+    public void optionsRequest() {
+
+    }
 }
