@@ -38,6 +38,10 @@ public class TranscriptService {
         return repository.findByDate(date).stream().map(Transcript::getText).toList();
     }
 
+    public List<String> getAll() {
+        return repository.findAll().stream().map(Transcript::getText).toList();
+    }
+
     @SneakyThrows
     public List<String> translate(List<String> texts, String language) {
         Translate t = new Translate.Builder(GoogleNetHttpTransport.newTrustedTransport(),

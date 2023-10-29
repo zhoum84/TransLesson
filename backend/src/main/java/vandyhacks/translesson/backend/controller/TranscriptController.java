@@ -37,6 +37,13 @@ public class TranscriptController {
     }
 
     @CrossOrigin(origins = "*")
+    @GetMapping(value = "/transcripts/all")
+    public List<String> getAll() {
+        System.out.println("Get 3");
+        return service.getAll();
+    }
+
+    @CrossOrigin(origins = "*")
     @PostMapping("/transcripts")
     public ResponseEntity<String> addTranscript(@RequestBody Transcript t) {
         System.out.println(t.getText());
