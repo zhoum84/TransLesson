@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import vandyhacks.translesson.backend.model.Transcript;
 import vandyhacks.translesson.backend.service.TranscriptService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -50,7 +51,10 @@ public class TranscriptController {
     }
 
     @RequestMapping(value = "/transcripts", method = RequestMethod.OPTIONS)
-    public void optionsRequest() {
-
+    public void optionsRequest(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
     }
 }
