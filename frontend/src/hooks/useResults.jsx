@@ -5,6 +5,7 @@ export default () => {
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
   
+
     const searchAPI = async(searchTerm) => {
       try{
         const response = await backend.get('/search', {
@@ -14,8 +15,10 @@ export default () => {
             location: 'san jose',
           }
         });
-        setResults(response.data.businesses);
+        setResults(response);
+        console.log(response)
       } catch(err){
+        console.log(err)
         setErrorMessage('Something went wrong');
       }
     };

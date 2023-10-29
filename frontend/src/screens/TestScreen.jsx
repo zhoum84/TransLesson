@@ -113,7 +113,6 @@ export default TestScreen = ({ navigation }) => {
 
   const handleContinue = () =>{
     setVisible(false)
-    console.log(name);
     navigation.navigate("Results", {
       name: name,
       transcript: transcript,
@@ -124,7 +123,7 @@ export default TestScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{transcript}</Text>
+      <Text selectable={true}>{transcript}</Text>
       <TouchableOpacity onPress={isRecording ? stopRecording : startRecording}>
         {isRecording ? (
           <Text style={styles.button}>
@@ -165,11 +164,11 @@ export default TestScreen = ({ navigation }) => {
       )}
 
       <Dialog.Container visible={visible}>
-        <Dialog.Title>Name</Dialog.Title>
-        <Dialog.Description>
+        <Dialog.Title style={{color: 'black'}}>Name</Dialog.Title>
+        <Dialog.Description style={{color: 'black'}}>
             Create a name for your notes. 
         </Dialog.Description>
-        <Dialog.Input placeholder="Enter Name:" onChangeText={(e) => setName(e)}/>
+        <Dialog.Input placeholder="Enter Name:" style={{color: 'black'}} onChangeText={(e) => setName(e)}/>
 
         <Dialog.Button label="Cancel" onPress={handleCancel}/>
         <Dialog.Button label="Continue" onPress={handleContinue}/>
