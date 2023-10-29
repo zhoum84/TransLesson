@@ -1,6 +1,8 @@
 package vandyhacks.translesson.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vandyhacks.translesson.backend.model.Transcript;
@@ -31,15 +33,18 @@ public class TranscriptController {
     @PostMapping("/transcripts")
     public ResponseEntity<String> addTranscript(@RequestBody Transcript t) {
         System.out.println(t.getText());
-        var response = ResponseEntity.ok(service.addTranscript(t));
-        addCorsHeaders(response);
-        return response;
+        return getCorsResponse(service.addTranscript(t));
     }
 
-    private void addCorsHeaders(ResponseEntity<?> response) {
-        response.getHeaders().add("Access-Control-Allow-Origin", "*");
-        response.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.getHeaders().add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        response.getHeaders().add("Access-Control-Allow-Credentials", "true");
+    private <T> ResponseEntity<T> getCorsResponse(T t) {
+        HttpHeaders headers = new HttpHeaders();
+
+        // Add CORS headers
+        headers.add("Access-Control-Allow-Origin", "*");
+        headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        headers.add("Access-Control-Allow-Credentials", "true");
+
+        return new ResponseEntity<>(t, headers, HttpStatus.OK);
     }
 }
