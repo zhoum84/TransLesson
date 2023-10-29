@@ -8,27 +8,21 @@ export default SingleNoteScreen = ({route}) => {
     const navigation = useNavigation();
     const index = route.params;
     const [indexAPI, results, errorMessage] = searchByIndex();
-    if(results){
-      const [name, date, text] = results
-    }
-    else
-    {
-      return null;
-    }
-      useEffect(() =>{
+
+
+    useEffect(() =>{
       indexAPI(index.index)
       console.log(results);
     },[])
 
-
   return (
     <View style={styles.container}>
     <Text style={styles.title}>{results.name}</Text>
-    <Text style={styles.subtitle}>{date}</Text>
+    <Text style={styles.subtitle}>{results.date}</Text>
     <TouchableOpacity>
       <Ionicons name="copy-outline"  size={32} style={{color:'white'}}/>
     </TouchableOpacity>
-    <ShareExample date={date} text={text}/>
+    <ShareExample date={results.date} text={results.text}/>
     <Text style={styles.fields}>{results.text}</Text>
 
     <TouchableOpacity onPress={() => navigation.navigate('Notes')}>

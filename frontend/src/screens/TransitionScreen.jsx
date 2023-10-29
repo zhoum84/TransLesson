@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
         //marginLeft: '18%',
         padding: "2%",
         fontSize: 33,
-        marginBottom: '5%'
+        marginBottom: '5%',
+        
         //marginTop: '70%'
 
       }
