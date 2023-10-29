@@ -5,27 +5,44 @@ export default () => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const translateAPI = async (name, date, transcript) => {
+  const translateAPI = async (name, date, language) => {
     const json = JSON.stringify({
       name: name,
       date: date,
-      text: transcript
+      language: language,
     });
 
     try {
-      const response = await axios.get("https://c36e-129-59-122-77.ngrok-free.app/transcripts/transcripts", json, {
-        headers: {
-          // Overwrite Axios's automatically set Content-Type
-          'Content-Type': 'application/json'
-        }
-      });
-      setResults(response.data);
-
+      if (name != "") {
+        const response = await axios.get(
+          `https://c36e-129-59-122-77.ngrok-free.app/transcripts?name=${name}&language=${language}`,
+          json,
+          {
+            headers: {
+              // Overwrite Axios's automatically set Content-Type
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setResults(response.data);
+      } else {
+        const response = await axios.get(
+          `https://c36e-129-59-122-77.ngrok-free.app/transcripts?name=${date}&language=${language}`,
+          json,
+          {
+            headers: {
+              // Overwrite Axios's automatically set Content-Type
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setResults(response.data);
+      }
     } catch (err) {
       console.log(err);
       setErrorMessage("Something went wrong");
     }
   };
-  
+
   return [postAPI, results, errorMessage];
 };

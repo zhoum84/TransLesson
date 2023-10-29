@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios')
 const myParser = require("body-parser");
+const deepl = require('deepl-node');
 require('dotenv').config();
 
 //const {Translate} = require('@google-cloud/translate').v2;
@@ -33,7 +34,8 @@ app.use(express.json())
 app.use(myParser.urlencoded({extended : true}));
 
 
-let count = 2;
+
+let count = 0;
 let notes = [
     {
     "name" : "test",
@@ -47,17 +49,7 @@ let notes = [
     }
 ];
 
-let notes2 = 
-    {"1": {
-    "name" : "test",
-    "date" : "2020-10-10",
-    "text" : "xdlol"
-    },
-    "2": {
-    "name" : "test2",
-    "date" : "2021-10-11",
-    "text" : "xdlollmao"
-    }};
+let notes2 = {};
 
 
 let word;
@@ -96,24 +88,29 @@ app.get('/note', (req, res) =>{
     res.status(200).send(entry);
 })
 
-app.post('/translate', (req, res) => {
-    var q = req.body.q;
-    console.log(q);
-  var options = { method: 'post',
-  url: 'https://translation.googleapis.com/language/translate/v2',
-  form: 
-   { 
-        key: AIzaSyBSY85cWOiIhVSwEZ13oLoo2k1tB24wBw4,
-     q: q,
-     target: 'es' 
-    
-    } };
-    request(options, function (error, response, body) {
-    if (error) throw new error(error);
-    console.log(body);
-    res.send(body);
-    });
+const translator = new deepl.Translator("cd9f96ff-6c16-6a22-07d7-ad3e2ca1d055:fx");
+
+app.post('/translate', async (req, res) => {
+    var language = req.query.language;
+    console.log(language)
+    const data = Object.keys(req.body).map(key => ({
+        key,
+        ...req.body[key]
+    }));
+
+    var str ="";
+    for (var key in data[0]){
+            console.log(typeof(data[0][key]));
+        if(data[0][key] != 'text')
+        str = str + data[0][key]
+    }
+    console.log(str);
+
+        const result =await translator.translateText(str, null, language);
+    res.send(result.text);
 })
+
+
 
 app.patch('/score', (req, res) => {
     score = Math.max((req.query.val), score);

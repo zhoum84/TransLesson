@@ -10,7 +10,7 @@ import ResultsScreen from './src/screens/ResultsScreen.jsx';
 import TransitionScreen from './src/screens/TransitionScreen.jsx';
 import LoadScreen from './src/screens/LoadScreen.jsx';
 import SingleNoteScreen from './src/screens/SingleNoteScreen.jsx';
-
+import Translate from './src/screens/Translate.jsx';
 import { LogBox } from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -30,6 +30,8 @@ export default function App() {
         <Stack.Screen name="Transition" component={TransitionScreen}/>
         <Stack.Screen name="Load" component={LoadScreen} />
         <Stack.Screen name="SingleNote" component={SingleNoteScreen} />
+        <Stack.Screen name="Translate" component={Translate} />
+
 
       </Stack.Navigator>
     </NavigationContainer>  

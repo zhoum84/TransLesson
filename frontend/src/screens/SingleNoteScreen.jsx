@@ -2,18 +2,46 @@ import { View,Text, StyleSheet, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import searchByIndex from "../hooks/searchByIndex";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import ShareExample from "../components/ShareButton";
+import axios from "axios";
+
 export default SingleNoteScreen = ({route}) => {
     const navigation = useNavigation();
-    const index = route.params;
+    const [index, setIndex] = useState(0);
     const [indexAPI, results, errorMessage] = searchByIndex();
-
+    const [language, setLanguage] = useEffect('en');
 
     useEffect(() =>{
       indexAPI(index.index)
-      console.log(results);
+    },[index])
+
+    useEffect(()=>{
+      setIndex(route.params);
     },[])
+    
+
+    const translate = async() =>{
+      // const json = {
+      //    "text": "lol"
+      // }
+      // console.log("lol")
+      // try {
+      //   const response = await backend.post(`/translate?language=${language}`, json, {
+      //     headers: {
+      //       // Overwrite Axios's automatically set Content-Type
+      //       'Content-Type': 'application/json'
+
+      //     }
+      //   });
+      //   console.log(response.data);
+  
+      // } catch (err) {
+      //   console.log(err);
+      // }
+  
+      // console.log(result.text)
+    }
 
   return (
     <View style={styles.container}>
@@ -24,6 +52,9 @@ export default SingleNoteScreen = ({route}) => {
     </TouchableOpacity>
     <ShareExample date={results.date} text={results.text}/>
     <Text style={styles.fields}>{results.text}</Text>
+    {/* <TouchableOpacity onPress={() => translate()}>
+      <Text>Translate</Text>
+    </TouchableOpacity> */}
 
     <TouchableOpacity onPress={() => navigation.navigate('Notes')}>
         <Text style={styles.signup} navigation={navigation} >

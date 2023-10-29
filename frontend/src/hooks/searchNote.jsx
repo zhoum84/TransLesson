@@ -16,7 +16,7 @@ export default () => {
     // else if (date !== "")
     //     query = `date=${date}`
     try {
-      const response = await backend.get(`/notes`);
+      const response = await backend.get(`/transcripts/all`);
       setResults(response.data);
     } catch (err) {
       console.log(err);

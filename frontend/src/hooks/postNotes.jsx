@@ -13,7 +13,7 @@ export default () => {
     });
 
     try {
-      const response = await backend.post("/post", json, {
+      const response = await axios.post("https://2e18-129-59-122-77.ngrok-free.app/transcripts", json, {
         headers: {
           // Overwrite Axios's automatically set Content-Type
           'Content-Type': 'application/json'
