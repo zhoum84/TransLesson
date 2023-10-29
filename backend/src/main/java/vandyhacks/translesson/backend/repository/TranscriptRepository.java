@@ -11,4 +11,6 @@ import java.util.List;
 public interface TranscriptRepository extends MongoRepository<Transcript, String> {
     List<Transcript> findByName(String name);
     List<Transcript> findByDate(LocalDate date);
+
+    List<Transcript> findAll();
 }
