@@ -21,15 +21,15 @@ const styles = StyleSheet.create({
         height: '50%',
         alignSelf:"stretch",
         width: '100%',
-        borderWidth: 1,
         flex: 1,
         flexWrap: "wrap",
+        backgroundColor:'#f6f6f6'
     },
     name:{
         fontWeight: 'bold',
         fontSize: 20,
         marginBottom: '1%',
-        marginLeft: '5%'
+        marginLeft: '5%',
     },
     text: {
         marginLeft: '5%'

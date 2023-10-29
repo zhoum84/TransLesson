@@ -96,17 +96,25 @@ app.get('/note', (req, res) =>{
     res.status(200).send(entry);
 })
 
-app.get('/translate', (req,res) =>{
-    let response =  axios.post(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`,
-    {
-        "q" : "hello", "target" : "tr"
-    }.catch(err => console.log(err)))
-        
-    let translation = response.data.data.translations[0].translatedText;
-    response.status(200).send({translation})
-      
+app.post('/translate', (req, res) => {
+    var q = req.body.q;
+    console.log(q);
+  var options = { method: 'post',
+  url: 'https://translation.googleapis.com/language/translate/v2',
+  form: 
+   { 
+        key: AIzaSyBSY85cWOiIhVSwEZ13oLoo2k1tB24wBw4,
+     q: q,
+     target: 'es' 
     
+    } };
+    request(options, function (error, response, body) {
+    if (error) throw new error(error);
+    console.log(body);
+    res.send(body);
+    });
 })
+
 app.patch('/score', (req, res) => {
     score = Math.max((req.query.val), score);
     res.status(200).send(`${score}`);

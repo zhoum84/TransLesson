@@ -18,11 +18,10 @@ LogBox.ignoreAllLogs();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        {/*   screenOptions={{
+      <Stack.Navigator initialRouteName="Home"    screenOptions={{
     headerShown: false
-  }}
- */}
+  }}>
+        
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Notes" component={NotesScreen} />
         <Stack.Screen name="Record" component={RecordScreen}/>

@@ -123,7 +123,7 @@ export default TestScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text selectable={true}>{transcript}</Text>
+      <Text selectable={true} style={styles.textContainer}>&nbsp;{transcript}</Text>
       <TouchableOpacity onPress={isRecording ? stopRecording : startRecording}>
         {isRecording ? (
           <Text style={styles.button}>
@@ -146,7 +146,7 @@ export default TestScreen = ({ navigation }) => {
         <Text></Text>
       ) : (
         <TouchableOpacity style={styles.button} onPress={createAlert}>
-          <Text>Save Recording</Text>
+          <Text style={{fontSize:18, color:"green"}}>Save Recording</Text>
         </TouchableOpacity>
       )}
 
@@ -154,6 +154,7 @@ export default TestScreen = ({ navigation }) => {
         <Text></Text>
       ) : (
         <DropDownPicker
+          style={styles.picker}
           open={open}
           value={language}
           items={items}
@@ -180,14 +181,34 @@ export default TestScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "steelblue",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: 40,
+    
   },
-
+  textContainer: {
+    width: '91%',
+    alignItems: "stretch",
+    justifyContent: 'flex-start',
+    color: 'white',
+    alignItems:"flex-start",
+    fontSize:18,
+    flex: 1,
+    flexWrap: "wrap",
+    marginLeft: "3%",
+    marginRight: "3%",
+    borderWidth: 1,
+    marginTop: '1%',
+    marginBottom: '1%',
+    borderColor: 'white',
+    
+    
+    
+  },
   button: {
     backgroundColor: "white",
-    color: "#3A59FF",
+    color: "black",
     width: "65%",
     borderRadius: 25,
     borderWidth: 1,
@@ -203,4 +224,9 @@ const styles = StyleSheet.create({
   pause: {
     fontSize: 25,
   },
+  picker:{
+    width: '80%',
+    marginLeft: '10%',
+    marginBottom: "10%"
+  }
 });

@@ -3,26 +3,36 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import searchByIndex from "../hooks/searchByIndex";
 import { useEffect } from "react";
-export default SingleNoteScreen = ({route, navigation}) => {
-    //const navigation = useNavigation();
+import ShareExample from "../components/ShareButton";
+export default SingleNoteScreen = ({route}) => {
+    const navigation = useNavigation();
     const index = route.params;
     const [indexAPI, results, errorMessage] = searchByIndex();
-    console.log(API_KEY);
-
-    useEffect(() =>{
+    if(results){
+      const [name, date, text] = results
+    }
+    else
+    {
+      return null;
+    }
+      useEffect(() =>{
       indexAPI(index.index)
       console.log(results);
     },[])
 
+
   return (
     <View style={styles.container}>
     <Text style={styles.title}>{results.name}</Text>
-    <Text style={styles.subtitle}>{results.date}</Text>
-    <Ionicons name="copy-outline"  size={32} />
+    <Text style={styles.subtitle}>{date}</Text>
+    <TouchableOpacity>
+      <Ionicons name="copy-outline"  size={32} style={{color:'white'}}/>
+    </TouchableOpacity>
+    <ShareExample date={date} text={text}/>
     <Text style={styles.fields}>{results.text}</Text>
 
-    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.signup} >
+    <TouchableOpacity onPress={() => navigation.navigate('Notes')}>
+        <Text style={styles.signup} navigation={navigation} >
             Back to Notes
         </Text>
     </TouchableOpacity>
@@ -34,31 +44,34 @@ export default SingleNoteScreen = ({route, navigation}) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'white',
+      backgroundColor: 'steelblue',
       alignItems: 'center',
       fontSize: 20,
       paddingLeft: '5%',
-      paddingRight: '5%'
+      paddingRight: '5%',
+      paddingTop: '4%'
 
     },
     title:{
         fontSize: 40,
         textAlign: 'center',
         marginTop: '10%',
-        marginBottom: '3%'
+        marginBottom: '3%',
+        color:'white',
     },
     subtitle:{
         fontSize: 25,
         textAlign: 'center',
-        color: 'gray',
+        color: 'lightgray',
         marginBottom: '7%'
     },
     fields:{
         fontSize: 18,
+        color:'white'
     },
     signup: {
       backgroundColor: 'white',
-      color: '#3A59FF',
+      color: 'black',
       width: "65%",
       borderRadius: 25,
       textAlign: 'center',
@@ -67,7 +80,7 @@ const styles = StyleSheet.create({
       padding: "2%",
       fontSize:  33,
       marginBottom: 5,
-      bottom: -350,
+      bottom: -420,
       borderWidth:1
       //marginTop: '70%'
 

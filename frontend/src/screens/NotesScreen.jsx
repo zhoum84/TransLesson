@@ -11,8 +11,14 @@ export default NotesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { alignItems: "center" },
+  container: { 
+    alignItems: "center",
+    paddingTop: '11%',
+    backgroundColor: 'steelblue',
+    paddingBottom: '80%'
+},  
   title: {
     fontSize: 36,
+    color:"white"
   },
 });

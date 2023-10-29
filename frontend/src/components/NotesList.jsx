@@ -45,11 +45,10 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "90%",
     height: "90%",
-    borderWidth: 1,
     justifyContent: "center",
     flexDirection: 'column',
     alignItems: 'center',
-    
+    color:'white'
   },
   name: {
     fontWeight: "bold",
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
   },
   button:{
-    marginTop: "1%"
+    marginTop: "1%",
+    
   }
 });

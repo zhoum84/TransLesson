@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 50,
         textAlign: 'center',
-        marginTop: '10%',
+        marginTop: '15%',
         marginBottom: '3%'
     },
     subtitle:{
