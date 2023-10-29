@@ -29,6 +29,7 @@ public class TranscriptController {
 
     @PostMapping("/transcripts")
     public String addTranscript(@RequestBody Transcript t) {
+        System.out.println(t.getText());
         return service.addTranscript(t);
     }
 }
