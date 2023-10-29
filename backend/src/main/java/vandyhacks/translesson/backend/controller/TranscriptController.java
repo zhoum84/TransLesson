@@ -48,8 +48,8 @@ public class TranscriptController {
         System.out.println("Post" + t);
         // Add CORS headers
         headers.add("Access-Control-Allow-Origin", "*");
-        headers.add("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, OPTIONS");
-        headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        headers.add("Access-Control-Allow-Methods", "*");
+        headers.add("Access-Control-Allow-Headers", "*");
         headers.add("Access-Control-Allow-Credentials", "true");
 
         return new ResponseEntity<>(t, headers, HttpStatus.OK);
@@ -60,8 +60,8 @@ public class TranscriptController {
     public void optionsRequest(HttpServletResponse response) {
         System.out.println("Options");
         response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
     }
 }
