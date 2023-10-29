@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import backend from "../api/backend";
 
 export default () => {
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState("");
     const [errorMessage, setErrorMessage] = useState('');
   
 
     const searchAPI = async(searchTerm) => {
       try{
-        const response = await backend.get('/search', {
+        const response = await backend.get('/transcripts', {
           params: {
             limit: 50,
             term: searchTerm, 

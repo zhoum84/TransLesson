@@ -98,7 +98,7 @@ export default RecordScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "steelblue",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -120,5 +120,6 @@ const styles = StyleSheet.create({
   },
   pause: {
     fontSize: 25,
+    
   },
 });
